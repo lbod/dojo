@@ -1,55 +1,53 @@
 /**
- * @namespace dojo
- */
+* @module dojo/Stateful1
+* @exports dojo/Stateful1
+*/
 define(["./_base/declare", "./_base/lang", "./_base/array", "./when"], function(declare, lang, array, when){
 	// module:
 	//		dojo/Stateful
-/**
- * @constructor  dojo.Stateful
- * @summary Base class for objects that provide named properties with optional getter/setter
- * control and the ability to watch for property changes <br/>
- *  - TODO importantly the class name is always new Stateful (ingores @constructor)<br/><br/>
- *
- *  The class also provides the functionality to auto-magically manage getters
- *  and setters for object attributes/properties.<br/>
- *
- *  Getters and Setters should follow the format of _xxxGetter or _xxxSetter where
- *  the xxx is a name of the attribute to handle.<br/>
- *  So an attribute of "foo" would have a custom getter of _fooGetter and a custom setter of _fooSetter.
- *  <br/><b>TODO:  run like ./jsdoc -r -c ./realdojo/jsdocconfig.json </b>
- *  <br/>Or from the cmd line for a single file <b>./jsdoc -r -p ./realdojo/Stateful.js</b> (-p "show private")
- * @example <caption>create a new registry</caption>
- *      var obj = new dojo.Stateful();
- *      obj.watch("foo", function(){
- *          console.log("foo changed to " + this.get("foo"));
- *      });
- *      obj.set("foo","bar");
- *
- */
 
-return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
+/**
+* @constructor  dojo.Stateful1
+* @summary Base class for objects that provide named properties with optional getter/setter
+* control and the ability to watch for property changes <br/>
+*  - TODO importantly the class name is always new Stateful (ingores @constructor)<br/><br/>
+*
+*  The class also provides the functionality to auto-magically manage getters
+*  and setters for object attributes/properties.<br/>
+*
+*  Getters and Setters should follow the format of _xxxGetter or _xxxSetter where
+*  the xxx is a name of the attribute to handle.<br/>
+*  So an attribute of "foo" would have a custom getter of _fooGetter and a custom setter of _fooSetter.
+*
+* @example // create a new registry
+*      var obj = new dojo.Stateful();
+*      obj.watch("foo", function(){
+*          console.log("foo changed to " + this.get("foo"));
+*      });
+*      obj.set("foo","bar");
+*
+*/
+return declare("dojo.Stateful1", null, {
 	// summary:
 	//		Base class for objects that provide named properties with optional getter/setter
 	//		control and the ability to watch for property changes
 	//
 	//		The class also provides the functionality to auto-magically manage getters
 	//		and setters for object attributes/properties.
-	//		
-	//		Getters and Setters should follow the format of _xxxGetter or _xxxSetter where 
-	//		the xxx is a name of the attribute to handle.  So an attribute of "foo" 
+	//
+	//		Getters and Setters should follow the format of _xxxGetter or _xxxSetter where
+	//		the xxx is a name of the attribute to handle.  So an attribute of "foo"
 	//		would have a custom getter of _fooGetter and a custom setter of _fooSetter.
 	//
 	// example:
-	//	|	require(["dojo/Stateful", function(Stateful) {
-	//	|		var obj = new Stateful();
-	//	|		obj.watch("foo", function(){
-	//	|			console.log("foo changed to " + this.get("foo"));
-	//	|		});
-	//	|		obj.set("foo","bar");
+	//	|	var obj = new dojo.Stateful();
+	//	|	obj.watch("foo", function(){
+	//	|		console.log("foo changed to " + this.get("foo"));
 	//	|	});
+	//	|	obj.set("foo","bar");
 
 	// _attrPairNames: Hash
-	//		Used across all instances a hash to cache attribute names and their getter 
+	//		Used across all instances a hash to cache attribute names and their getter
 	//		and setter names.
 	_attrPairNames: {},
 
@@ -75,6 +73,7 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 			g: "_" + name + "Getter"
 		});
 	},
+
     /**
      *
      * @param params
@@ -83,6 +82,7 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		// Automatic setting of params during construction
 		if (params){ this.set(params); }
 	},
+
     /**
      * Private function that does a get based off a hash of names
      * @param name
@@ -119,12 +119,10 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		//		Get a named property on a Stateful object. The property may
 		//		potentially be retrieved via a getter method in subclasses. In the base class
 		//		this just retrieves the object's property.
-		// example:
-		//	|	require(["dojo/Stateful", function(Stateful) {
-		//	|		var stateful = new Stateful({foo: 3});
-		//	|		stateful.get("foo") // returns 3
-		//	|		stateful.foo // returns 3
-		//	|	});
+		//		For example:
+		//	|	stateful = new dojo.Stateful({foo: 3});
+		//	|	stateful.get("foo") // returns 3
+		//	|	stateful.foo // returns 3
 
 		return this._get(name, this._getAttrNames(name)); //Any
 	},
@@ -162,19 +160,18 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		// description:
 		//		Sets named properties on a stateful object and notifies any watchers of
 		//		the property. A programmatic setter may be defined in subclasses.
-		// example:
-		//	|	require(["dojo/Stateful", function(Stateful) {
-		//	|		var stateful = new Stateful();
-		//	|		stateful.watch(function(name, oldValue, value){
-		//	|			// this will be called on the set below
-		//	|		}
-		//	|		stateful.set(foo, 5);
+		//		For example:
+		//	|	stateful = new dojo.Stateful();
+		//	|	stateful.watch(function(name, oldValue, value){
+		//	|		// this will be called on the set below
+		//	|	}
+		//	|	stateful.set(foo, 5);
+		//
 		//	set() may also be called with a hash of name/value pairs, ex:
-		//	|		stateful.set({
-		//	|			foo: "Howdy",
-		//	|			bar: 3
-		//	|		});
-		//	|	});
+		//	|	myObj.set({
+		//	|		foo: "Howdy",
+		//	|		bar: 3
+		//	|	})
 		//	This is equivalent to calling set(foo, "Howdy") and set(bar, 3)
 
 		// If an object is used, iterate through object
@@ -229,9 +226,9 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		//		The value to set in the property.
 		//
 		// description:
-		//		Directly change the value of an attribute on an object, bypassing any 
-		//		accessor setter.  Also handles the calling of watch and emitting events. 
-		//		It is designed to be used by descendent class when there are two values 
+		//		Directly change the value of an attribute on an object, bypassing any
+		//		accessor setter.  Also handles the calling of watch and emitting events.
+		//		It is designed to be used by descendent class when there are two values
 		//		of attributes that are linked, but calling .set() is not appropriate.
 
 		var oldValue = this.get(name);

@@ -1,0 +1,31 @@
+{
+    "thisisntused" : { "files jsdocd" : [
+            "Stateful.js"
+        ]
+
+    },
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include" : ["./realdojo/"],
+        "exclude" : ["./realdojo/_base", "./realdojo/_firebug", "./realdojo/cldr", "./realdojo/data", "./realdojo/date", "./realdojo/dnd",
+            "./realdojo/errors", "./realdojo/fx", "./realdojo/io", "./realdojo/nls", "./realdojo/promise", "./realdojo/request", "./realdojo/resources",
+            "./realdojo/router", "./realdojo/rpc", "./realdojo/selector", "./realdojo/store", "./realdojo/tests"],
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)____|.+tests.+"
+    },
+    "plugins": [],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "outputSourceFiles": true
+        }
+    },
+    "opts": {
+        "recurse": false,
+        "lenient" : false,
+        "private" : true
+    }
+}
