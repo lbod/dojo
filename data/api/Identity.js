@@ -1,12 +1,13 @@
 /**
  * @module dojo/data/api/Identity
- * @exports dojo/data/api/Identity
  */
 define(["../../_base/declare", "./Read"], function(declare, Read){
 
 // module:
 //		dojo/data/api/Identity
     /**
+     * @constructor  dojo.data.api.Identity
+     * @augments module:dojo/data/api/Read
      * @summary This is an abstract API that data provider implementations conform to.<br/>
      *  This file defines methods signatures and intentionally leaves all the<br/>
      *  methods unimplemented.

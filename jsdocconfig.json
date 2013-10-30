@@ -1,10 +1,5 @@
 {
-    "temp config for notes" : { "files jsdocd" : [
-            "Stateful.js",
-            "Stateful1.js",
-            "Stateful2.js",
-            "Identity.js"
-        ],
+    "temp config for notes" : { 
         "general notes" : [
             "run like ./jsdoc -r -c ./realdojo/jsdocconfig.json",
             "Or from the cmd line, target a single file ./jsdoc -r -p ./realdojo/Stateful.js (-p 'show private')",
@@ -16,7 +11,8 @@
         "allowUnknownTags": true
     },
     "source": {
-        "include" : ["./realdojo/Stateful.js", "./realdojo/Stateful1.js", "./realdojo/Stateful2.js", "./realdojo/data/api/Identity.js"],
+        "include" : ["./realdojo/Stateful.js", "./realdojo/Stateful1.js", "./realdojo/Stateful2.js",
+            "./realdojo/data/api/Identity.js", "./realdojo/data/api/Read.js"],
         "exclude" : ["./realdojo/_base", "./realdojo/_firebug", "./realdojo/cldr", "./realdojo/data", "./realdojo/date", "./realdojo/dnd",
             "./realdojo/errors", "./realdojo/fx", "./realdojo/io", "./realdojo/nls", "./realdojo/promise", "./realdojo/request", "./realdojo/resources",
             "./realdojo/router", "./realdojo/rpc", "./realdojo/selector", "./realdojo/store", "./realdojo/tests"],

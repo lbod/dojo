@@ -1,9 +1,18 @@
+/**
+ * @module dojo/data/api/Read
+ * @exports dojo/data/api/Read
+ */
 define(["../../_base/declare"], function(declare){
 
 // module:
 //		dojo/data/api/Read
-
-return declare("dojo.data.api.Read", null, {
+    /**
+     * @summary This is an abstract API that data provider implementations conform to.<br/>
+     *  This file defines methods signatures and intentionally leaves all the<br/>
+     *  methods unimplemented.  For more information on the dojo.data APIs,<br/>
+     *  please visit: http://www.dojotoolkit.org/node/98
+     */
+return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read */{
 	// summary:
 	//		This is an abstract API that data provider implementations conform to.
 	//		This file defines methods signatures and intentionally leaves all the
@@ -125,6 +134,15 @@ return declare("dojo.data.api.Read", null, {
 		throw new Error('Unimplemented API: dojo.data.api.Read.isItem');
 	},
 
+    /**
+     * Returns false if isItem(something) is false.  Returns false if<br/>
+     *  if isItem(something) is true but the the item is not yet loaded<br/>
+     *  in local memory (for example, if the item has not yet been read<br/>
+     *  from the server).
+     * @param something Can be anything.
+     * @memberOf module:dojo/data/api/Read#
+     * @throws Error('Unimplemented API: dojo.data.api.Read.isItemLoaded');
+     */
 	isItemLoaded: function(/* anything */ something){
 		// summary:
 		//		Returns false if isItem(something) is false.  Returns false if
@@ -400,7 +418,19 @@ return declare("dojo.data.api.Read", null, {
 		//		|	store.fetch(fetchArgs);  // get the next 20 items
 		throw new Error('Unimplemented API: dojo.data.api.Read.fetch');
 	},
-
+    /**
+     * The getFeatures() method returns an simple keyword values object<br/>
+     *  that specifies what interface features the datastore implements.<br/>
+     *  A simple CsvStore may be read-only, and the only feature it<br/>
+     *  implements will be the 'dojo/data/api/Read' interface, so the<br/>
+     *  getFeatures() method will return an object like this one:<br/>
+     *  {'dojo.data.api.Read': true}.<br/>
+     *  A more sophisticated datastore might implement a variety of<br/>
+     *  interface features, like 'dojo.data.api.Read', 'dojo/data/api/Write',<br/>
+     *  'dojo.data.api.Identity', and 'dojo/data/api/Attribution'.
+     * @memberOf module:dojo/data/api/Read#
+     * @returns {{dojo.data.api.Read: boolean}}
+     */
 	getFeatures: function(){
 		// summary:
 		//		The getFeatures() method returns an simple keyword values object
