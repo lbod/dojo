@@ -1,4 +1,5 @@
 /**
+ * @namespace dojo/data/api/Identity
  * @module dojo/data/api/Identity
  */
 define(["../../_base/declare", "./Read"], function(declare, Read){
@@ -27,8 +28,8 @@ return declare("dojo.data.api.Identity", Read, /** @lends module:dojo/data/api/I
 		// summary:
 		//		See dojo/data/api/Read.getFeatures()
 		return {
-			 'dojo.data.api.Read': true,
-			 'dojo.data.api.Identity': true
+			'dojo.data.api.Read': true,
+			'dojo.data.api.Identity': true
 		};
 	},
 

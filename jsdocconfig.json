@@ -1,5 +1,5 @@
 {
-    "temp config for notes" : { 
+    "temp config for notes" : {
         "general notes" : [
             "run like ./jsdoc -r -c ./realdojo/jsdocconfig.json",
             "Or from the cmd line, target a single file ./jsdoc -r -p ./realdojo/Stateful.js (-p 'show private')",

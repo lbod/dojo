@@ -205,7 +205,11 @@ return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read 
 			throw new Error('Unimplemented API: dojo.data.api.Read.loadItem');
 		}
 	},
-
+    /**
+     * TODO
+     * @param keywordArgs
+     * @memberOf module:dojo/data/api/Read#
+     */
 	fetch: function(/* Object */ keywordArgs){
 		// summary:
 		//		Given a query and set of defined options, such as a start and count of items to return,
@@ -446,7 +450,11 @@ return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read 
 			'dojo.data.api.Read': true
 		};
 	},
-
+    /**
+     * TODO
+     * @param request
+     * @memberOf module:dojo/data/api/Read#
+     */
 	close: function(/*dojo/data/api/Request|Object?*/ request){
 		// summary:
 		//		The close() method is intended for instructing the store to 'close' out
@@ -493,7 +501,11 @@ return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read 
 		//		be generated.
 		throw new Error('Unimplemented API: dojo.data.api.Read.getLabel');
 	},
-
+    /**
+     * TODO
+     * @param item
+     * @memberOf module:dojo/data/api/Read#
+     */
 	getLabelAttributes: function(/* dojo/data/api/Item */ item){
 		// summary:
 		//		Method to inspect the item and return an array of what attributes of the item were used
