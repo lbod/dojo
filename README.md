@@ -1,3 +1,22 @@
+# dojo - jsdoc3 examples
+This is a temporary repository to show jsdoc3 tagging options for Dojo; It should be used to promote discussion on porting existing Dojo docs to jsdoc3 docs via examples.
+
+```
+\\ commands can obviously be improved, dont flame me, not important atm
+git clone https://github.com/jsdoc3/jsdoc.git to 'somedirectory'
+cd to 'somedirectory
+create a directory 'realdojo' and cd to it
+git clone https://github.com/lbod/dojo-jsdoc.git
+cd ..
+./jsdoc -r -c ./realdojo/jsdocconfig.json
+```
+
+This is a recently cloned version of dojo from https://github.com/dojo/dojo.git
+
+Currently only Stateful.js, Stateful1.js, Stateful2.js, data/api/Identity.js, data/api/Read.js are parsed
+
+---
+
 # dojo
 
 **dojo** is the foundation package of the Dojo Toolkit. Sometimes referred to as the “core”, it contains the most
