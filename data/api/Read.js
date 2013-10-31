@@ -3,13 +3,13 @@
  *  This file defines methods signatures and intentionally leaves all the<br/>
  *  methods unimplemented.  For more information on the dojo.data APIs,<br/>
  *  please visit: http://www.dojotoolkit.org/node/98
- *  @constructor Read
+ *  @constructor myns.Read
  */
 define(["../../_base/declare"], function(declare){
 
 // module:
 //		dojo/data/api/Read
-return declare("dojo.data.api.Read", null, /** @lends Read.prototype */{
+return declare("dojo.data.api.Read", null, /** @lends myns.Read.prototype */{
 	// summary:
 	//		This is an abstract API that data provider implementations conform to.
 	//		This file defines methods signatures and intentionally leaves all the

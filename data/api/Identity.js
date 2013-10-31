@@ -1,18 +1,15 @@
-/**
- * @constructor Identity
- */
 define(["../../_base/declare", "./Read"], function(declare, Read){
 
 // module:
 //		dojo/data/api/Identity
     /**
-     * @constructor Identity
-     * @augments Read
+     * @constructor myns.Identity
+     * @augments myns.Read
      * @summary This is an abstract API that data provider implementations conform to.<br/>
      *  This file defines methods signatures and intentionally leaves all the<br/>
      *  methods unimplemented.
      */
-return declare("dojo.data.api.Identity", Read, /** @lends Identity.prototype */{
+return declare("dojo.data.api.Identity", Read, /** @lends myns.Identity.prototype */{
 	// summary:
 	//		This is an abstract API that data provider implementations conform to.
 	//		This file defines methods signatures and intentionally leaves all the
