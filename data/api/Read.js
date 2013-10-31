@@ -1,4 +1,8 @@
 /**
+ * This is an abstract API that data provider implementations conform to.<br/>
+ *  This file defines methods signatures and intentionally leaves all the<br/>
+ *  methods unimplemented.  For more information on the dojo.data APIs,<br/>
+ *  please visit: http://www.dojotoolkit.org/node/98
  * @module dojo/data/api/Read
  * @exports dojo/data/api/Read
  */
@@ -6,12 +10,6 @@ define(["../../_base/declare"], function(declare){
 
 // module:
 //		dojo/data/api/Read
-    /**
-     * @summary This is an abstract API that data provider implementations conform to.<br/>
-     *  This file defines methods signatures and intentionally leaves all the<br/>
-     *  methods unimplemented.  For more information on the dojo.data APIs,<br/>
-     *  please visit: http://www.dojotoolkit.org/node/98
-     */
 return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read */{
 	// summary:
 	//		This is an abstract API that data provider implementations conform to.
