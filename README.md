@@ -4,16 +4,21 @@ This is a temporary repository to show jsdoc3 tagging options for Dojo; It shoul
 ```
 \\ commands can obviously be improved, dont flame me, not important atm
 git clone https://github.com/jsdoc3/jsdoc.git to 'somedirectory'
-cd to 'somedirectory
-create a directory 'realdojo' and cd to it
-git clone https://github.com/lbod/dojo-jsdoc.git
+cd to 'somedirectory'
+mkdir realdojo
+cd realdojo
+git clone https://github.com/lbod/dojo-jsdoc.git .
 cd ..
 ./jsdoc -r -c ./realdojo/jsdocconfig.json
 ```
 
 This is a recently cloned version of dojo from https://github.com/dojo/dojo.git
 
-Currently only Stateful.js, Stateful1.js, Stateful2.js, data/api/Identity.js, data/api/Read.js are parsed
+Currently only Stateful.js, Stateful1.js, Stateful2.js, data/api/Identity.js, data/api/Read.js are parsed.
+Stateful(and 1/2) are showing different optiions how to display modules with classes, Identity is important to show inheritance.
+
+Need to understand classes/modules using inheritance, mixins etc, how to prevent hardcoding of paths i.e. it's not conducive to AMD.
+The main aim is to remove as much redundant comments as possible and then understand whether porting to jsdoc comments is __easy and worth it__
 
 ---
 
