@@ -3,14 +3,13 @@
  *  This file defines methods signatures and intentionally leaves all the<br/>
  *  methods unimplemented.  For more information on the dojo.data APIs,<br/>
  *  please visit: http://www.dojotoolkit.org/node/98
- * @module dojo/data/api/Read
- * @exports dojo/data/api/Read
+ *  @constructor Read
  */
 define(["../../_base/declare"], function(declare){
 
 // module:
 //		dojo/data/api/Read
-return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read */{
+return declare("dojo.data.api.Read", null, /** @lends Read.prototype */{
 	// summary:
 	//		This is an abstract API that data provider implementations conform to.
 	//		This file defines methods signatures and intentionally leaves all the
@@ -138,7 +137,6 @@ return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read 
      *  in local memory (for example, if the item has not yet been read<br/>
      *  from the server).
      * @param something Can be anything.
-     * @memberOf module:dojo/data/api/Read#
      * @throws Error('Unimplemented API: dojo.data.api.Read.isItemLoaded');
      */
 	isItemLoaded: function(/* anything */ something){
@@ -206,7 +204,6 @@ return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read 
     /**
      * TODO
      * @param keywordArgs
-     * @memberOf module:dojo/data/api/Read#
      */
 	fetch: function(/* Object */ keywordArgs){
 		// summary:
@@ -430,7 +427,6 @@ return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read 
      *  A more sophisticated datastore might implement a variety of<br/>
      *  interface features, like 'dojo.data.api.Read', 'dojo/data/api/Write',<br/>
      *  'dojo.data.api.Identity', and 'dojo/data/api/Attribution'.
-     * @memberOf module:dojo/data/api/Read#
      * @returns {{dojo.data.api.Read: boolean}}
      */
 	getFeatures: function(){
@@ -451,7 +447,6 @@ return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read 
     /**
      * TODO
      * @param request
-     * @memberOf module:dojo/data/api/Read#
      */
 	close: function(/*dojo/data/api/Request|Object?*/ request){
 		// summary:
@@ -502,7 +497,6 @@ return declare("dojo.data.api.Read", null, /** @lends module:dojo/data/api/Read 
     /**
      * TODO
      * @param item
-     * @memberOf module:dojo/data/api/Read#
      */
 	getLabelAttributes: function(/* dojo/data/api/Item */ item){
 		// summary:

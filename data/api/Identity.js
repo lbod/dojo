@@ -1,19 +1,18 @@
 /**
- * @namespace dojo/data/api/Identity
- * @module dojo/data/api/Identity
+ * @constructor Identity
  */
 define(["../../_base/declare", "./Read"], function(declare, Read){
 
 // module:
 //		dojo/data/api/Identity
     /**
-     * @constructor  dojo.data.api.Identity
-     * @augments module:dojo/data/api/Read
+     * @constructor Identity
+     * @augments Read
      * @summary This is an abstract API that data provider implementations conform to.<br/>
      *  This file defines methods signatures and intentionally leaves all the<br/>
      *  methods unimplemented.
      */
-return declare("dojo.data.api.Identity", Read, /** @lends module:dojo/data/api/Identity */{
+return declare("dojo.data.api.Identity", Read, /** @lends Identity.prototype */{
 	// summary:
 	//		This is an abstract API that data provider implementations conform to.
 	//		This file defines methods signatures and intentionally leaves all the
@@ -22,7 +21,6 @@ return declare("dojo.data.api.Identity", Read, /** @lends module:dojo/data/api/I
     /**
      * See dojo/data/api/Read.getFeatures()
      * @returns {{dojo.data.api.Read: boolean, dojo.data.api.Identity: boolean}}
-     * @memberOf module:dojo/data/api/Identity#
      */
 	getFeatures: function(){
 		// summary:
@@ -44,7 +42,6 @@ return declare("dojo.data.api.Identity", Read, /** @lends module:dojo/data/api/I
      * @example
      *  var itemId = store.getIdentity(kermit);
      *  assert(kermit === store.findByIdentity(store.getIdentity(kermit)));
-     * @memberOf module:dojo/data/api/Identity#
      */
 	getIdentity: function(/* dojo/data/api/Item */ item){
 		// summary:
@@ -77,7 +74,6 @@ return declare("dojo.data.api.Identity", Read, /** @lends module:dojo/data/api/I
      *  var itemId = store.getIdentity(kermit);
      *  var identifiers = store.getIdentityAttributes(itemId);
      *  assert(typeof identifiers === "array" || identifiers === null);
-     * @memberOf module:dojo/data/api/Identity#
      */
 	getIdentityAttributes: function(/* dojo/data/api/Item */ item){
 		// summary:
@@ -114,7 +110,6 @@ return declare("dojo.data.api.Identity", Read, /** @lends module:dojo/data/api/I
      * @param {Function} keywordArgs.onError Function
      * @param {Object}keywordArgs.scope
      *
-     * @memberOf module:dojo/data/api/Identity#
      */
 	fetchItemByIdentity: function(/* object */ keywordArgs){
 		// summary:
