@@ -51,6 +51,10 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 	// _attrPairNames: Hash
 	//		Used across all instances a hash to cache attribute names and their getter 
 	//		and setter names.
+    /**
+     * Used across all instances a hash to cache attribute names and their getter<br/>
+     * and setter names.
+     */
 	_attrPairNames: {},
 
     /**
