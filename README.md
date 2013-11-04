@@ -13,7 +13,7 @@ cd ..
 ```
 
 This is a recently cloned version of dojo from https://github.com/dojo/dojo.git. If anyone wants to help out, ask me and I'll add
-you as a collaborator (doesn't seem like much point forking as it's only a temporary sanbox repo)
+you as a collaborator (doesn't seem like much point forking as it's only a temporary sandbox repo)
 
 Currently only Stateful.js, Stateful1.js, Stateful2.js, data/api/Identity.js, data/api/Read.js are parsed.
 Stateful(and 1/2) are showing different optiions how to display modules with classes, Identity is important to show inheritance.
