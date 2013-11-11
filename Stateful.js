@@ -1,33 +1,33 @@
 /**
- * @namespace dojo
+ * @module dojo/Stateful
  */
-define(["./_base/declare", "./_base/lang", "./_base/array", "./when"], function(declare, lang, array, when){
-	// module:
-	//		dojo/Stateful
 /**
- * @constructor  dojo.Stateful
- * @summary Base class for objects that provide named properties with optional getter/setter
+ * Base class for objects that provide named properties with optional getter/setter
  * control and the ability to watch for property changes <br/>
- *  - TODO importantly the class name is always new Stateful (ingores @constructor)<br/><br/>
  *
- *  The class also provides the functionality to auto-magically manage getters
- *  and setters for object attributes/properties.<br/>
+ * The class also provides the functionality to auto-magically manage getters<br/>
+ * and setters for object attributes/properties.<br/>
  *
- *  Getters and Setters should follow the format of _xxxGetter or _xxxSetter where
- *  the xxx is a name of the attribute to handle.<br/>
- *  So an attribute of "foo" would have a custom getter of _fooGetter and a custom setter of _fooSetter.
- *  <br/><b>TODO:  run like ./jsdoc -r -c ./realdojo/jsdocconfig.json </b>
- *  <br/>Or from the cmd line for a single file <b>./jsdoc -r -p ./realdojo/Stateful.js</b> (-p "show private")
- * @example <caption>create a new registry</caption>
+ * Getters and Setters should follow the format of _xxxGetter or _xxxSetter where<br/>
+ * the xxx is a name of the attribute to handle.<br/>
+ * So an attribute of "foo" would have a custom getter of _fooGetter and a custom setter of _fooSetter.
+ * @example <caption>create a new registry TODO: remove me, im just an example of using a caption on an example</caption>
  *      var obj = new dojo.Stateful();
  *      obj.watch("foo", function(){
  *          console.log("foo changed to " + this.get("foo"));
  *      });
  *      obj.set("foo","bar");
+ * @class
+ * @name module:dojo/Stateful
+ * @param {string } ex1 description TODO:REMOVE - just an example of class constructor args
+ * @param {string } ex2 description TODO:REMOVE - just an example of class constructor args
  *
  */
+define(["./_base/declare", "./_base/lang", "./_base/array", "./when"], function(declare, lang, array, when){
+	// module:
+	//		dojo/Stateful
 
-return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
+return declare("dojo.Stateful", null, /** @lends module:dojo/Stateful# */{
 	// summary:
 	//		Base class for objects that provide named properties with optional getter/setter
 	//		control and the ability to watch for property changes
@@ -54,6 +54,8 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
     /**
      * Used across all instances a hash to cache attribute names and their getter<br/>
      * and setter names.
+     * @type {object}
+     * @private
      */
 	_attrPairNames: {},
 
@@ -62,7 +64,7 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
      *
      * Caches attribute name values so we don't do the string ops every time.
      * @param name
-     * @returns {*}
+     * @return {*}
      * @private
      */
 	_getAttrNames: function(name){
@@ -80,7 +82,6 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		});
 	},
     /**
-     *
      * @param params
      */
 	postscript: function(/*Object?*/ params){
@@ -88,7 +89,7 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		if (params){ this.set(params); }
 	},
     /**
-     * Private function that does a get based off a hash of names
+     * @summary Private function that does a get based off a hash of names
      * @param name
      * @param names Hash of names of custom attributes
      * @returns {*}
@@ -103,13 +104,17 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 	},
 
     /**
-     * Get a property on a Stateful instance.
-     * @param name The property to get.
-     * @returns The property value on this Stateful instance.<br/>
-     * @description Get a named property on a Stateful object. The property may<br/>
+     * Get a named property on a Stateful object. The property may<br/>
      * potentially be retrieved via a getter method in subclasses. In the base class<br/>
-     * this just retrieves the object's property.<br/>
-     *
+     * this just retrieves the object's property.
+     * @summary Get a property on a Stateful instance.
+     * @example require(["dojo/Stateful", function(Stateful) {<br/>
+     *      var stateful = new Stateful({foo: 3});
+     *      stateful.get("foo") // returns 3
+     *      stateful.foo // returns 3
+     *  });
+     * @param {string} name The property to get.
+     * @return The property value on this Stateful instance.
      *
      */
 	get: function(/*String*/name){
@@ -133,13 +138,12 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		return this._get(name, this._getAttrNames(name)); //Any
 	},
     /**
-     *
-     * @param name The property to set.
-     * @param value The value to set in the property.
-     * @returns {dojo.Stateful}
-     * @description Sets named properties on a stateful object and notifies any watchers of<br/>
+     * Sets named properties on a stateful object and notifies any watchers of<br/>
      * the property. A programmatic setter may be defined in subclasses.<br/>
      * For example:<br/>
+     * @summary Set a property on a Stateful instance
+     * @param {string} name The property to set.
+     * @param {String} value The value to set in the property.
      * @example <caption>set() may also be called with a hash of name/value pairs, ex:</caption>
      *  stateful = new dojo.Stateful();
      *  stateful.watch(function(name, oldValue, value){
@@ -152,9 +156,9 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 	 *      foo: "Howdy",
 	 *      bar: 3
 	 *  })
-     *
+     * @returns {dojo.Stateful}
      */
-	set: function(/*String*/name, /*Object*/value){
+	set: function(name, value){
 		// summary:
 		//		Set a property on a Stateful instance
 		// name:
@@ -212,14 +216,13 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		return this; // dojo/Stateful
 	},
     /**
-     * Internal helper for directly changing an attribute value.
-     * @param name The property to set.
-     * @param value The value to set in the property.
-     * @description Directly change the value of an attribute on an object, bypassing any<br/>
+     * Directly change the value of an attribute on an object, bypassing any<br/>
      * accessor setter.  Also handles the calling of watch and emitting events.<br/>
      * It is designed to be used by descendent class when there are two values<br/>
-     * of attributes that are linked, but calling .set() is not appropriate.<br/>
-
+     * of attributes that are linked, but calling .set() is not appropriate
+     * @summary Internal helper for directly changing an attribute value.
+     * @param name The property to set.
+     * @param value The value to set in the property.
      * @returns {dojo.Stateful}
      * @private
      */
@@ -246,17 +249,21 @@ return declare("dojo.Stateful", null, /** @lends dojo.Stateful.prototype */{
 		return this; // dojo/Stateful
 	},
     /**
-     * Watches a property for changes
-     * @param name Indicates the property to watch. This is optional (the callback may be the<br/>
+     * @summary Watches a property for changes
+     * @param {String} name Indicates the property to watch. This is optional (the callback may be the<br/>
      * only parameter), and if omitted, all the properties will be watched
-     * @param callback The function to execute when the property changes. This will be called after<br/>
+     * @param {Function} callback The function to execute when the property changes. This will be called after<br/>
      * the property has been changed. The callback will be called with the |this|<br/>
      * set to the instance, the first argument as the name of the property, the<br/>
      * second argument as the old value and the third argument as the new value.
+     * @returns An object handle for the watch. The unwatch method of this object<br/>
+     *  can be used to discontinue watching this property:<pre class="prettyprint"><code>
+     *      var watchHandle = obj.watch("foo", callback);
+     *      watchHandle.unwatch(); // callback won't be called now
+     *  </code></pre>
      *
-     * @returns {{}}
      */
-	watch: function(/*String?*/name, /*Function*/callback){
+	watch: function(name, callback){
 		// summary:
 		//		Watches a property for changes
 		// name:
