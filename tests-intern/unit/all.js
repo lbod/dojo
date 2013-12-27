@@ -4,5 +4,7 @@ define([
 	'./io-query',
 	'./request',
 	'./dom-form',
-	'./io/iframe'
+	'./io/iframe',
+	'./request',
+	'./_base'
 ], function(){});
