@@ -8,55 +8,55 @@ define([
 
 	registerSuite({
 		name: 'dojo/_base/array',
-		'testIndexOf': function () {
+		'IndexOf': function () {
 			var foo = [128, 256, 512];
 			var bar = ["aaa", "bbb", "ccc"];
-			assert.deepEqual(1, array.indexOf([45, 56, 85], 56));
-			assert.deepEqual(1, array.indexOf([Number, String, Date], String));
-			assert.deepEqual(1, array.indexOf(foo, foo[1]));
-			assert.deepEqual(2, array.indexOf(foo, foo[2]));
-			assert.deepEqual(1, array.indexOf(bar, bar[1]));
-			assert.deepEqual(2, array.indexOf(bar, bar[2]));
-			assert.deepEqual(-1, array.indexOf({a:1}, "a"));
+			assert.strictEqual(array.indexOf([45, 56, 85], 56), 1);
+			assert.strictEqual(array.indexOf([Number, String, Date], String), 1);
+			assert.strictEqual(array.indexOf(foo, foo[1]), 1);
+			assert.strictEqual(array.indexOf(foo, foo[2]), 2);
+			assert.strictEqual(array.indexOf(bar, bar[1]), 1);
+			assert.strictEqual(array.indexOf(bar, bar[2]), 2);
+			assert.strictEqual(array.indexOf({a:1}, "a"), -1);
 
 			foo.push(bar);
-			assert.deepEqual(3, array.indexOf(foo, bar));
+			assert.strictEqual(3, array.indexOf(foo, bar));
 		},
-		'testIndexOfFromIndex': function () {
+		'IndexOfFromIndex': function () {
 			var foo = [128, 256, 512];
 			var bar = ["aaa", "bbb", "ccc"];
 
-			assert.deepEqual(-1, array.indexOf([45, 56, 85], 56, 2));
-			assert.deepEqual(1, array.indexOf([45, 56, 85], 56, 1));
-			assert.deepEqual(1, array.indexOf([45, 56, 85], 56, -3));
+			assert.strictEqual(array.indexOf([45, 56, 85], 56, 2), -1);
+			assert.strictEqual(array.indexOf([45, 56, 85], 56, 1), 1);
+			assert.strictEqual(array.indexOf([45, 56, 85], 56, -3), 1);
 			// Make sure going out of bounds doesn't throw us in an infinite loop
-			assert.deepEqual(-1, array.indexOf([45, 56, 85], 56, 3));
+			assert.strictEqual(array.indexOf([45, 56, 85], 56, 3), -1);
 		},
-		'testLastIndexOf': function () {
+		'LastIndexOf': function () {
 			var foo = [128, 256, 512];
 			var bar = ["aaa", "bbb", "aaa", "ccc"];
 
-			assert.deepEqual(1, array.indexOf([45, 56, 85], 56));
-			assert.deepEqual(1, array.indexOf([Number, String, Date], String));
-			assert.deepEqual(1, array.lastIndexOf(foo, foo[1]));
-			assert.deepEqual(2, array.lastIndexOf(foo, foo[2]));
-			assert.deepEqual(1, array.lastIndexOf(bar, bar[1]));
-			assert.deepEqual(2, array.lastIndexOf(bar, bar[2]));
-			assert.deepEqual(2, array.lastIndexOf(bar, bar[0]));
+			assert.strictEqual(array.indexOf([45, 56, 85], 56), 1);
+			assert.strictEqual(array.indexOf([Number, String, Date], String), 1);
+			assert.strictEqual(array.lastIndexOf(foo, foo[1]), 1);
+			assert.strictEqual(array.lastIndexOf(foo, foo[2]), 2);
+			assert.strictEqual(array.lastIndexOf(bar, bar[1]), 1);
+			assert.strictEqual(array.lastIndexOf(bar, bar[2]), 2);
+			assert.strictEqual(array.lastIndexOf(bar, bar[0]), 2);
 		},
-		'testLastIndexOfFromIndex': function () {
-			assert.deepEqual(1, array.lastIndexOf([45, 56, 85], 56, 1));
-			assert.deepEqual(-1, array.lastIndexOf([45, 56, 85], 85, 1));
-			assert.deepEqual(-1, array.lastIndexOf([45, 56, 85], 85, -2));
-			assert.deepEqual(0, array.lastIndexOf([45, 56, 45], 45, 0));
+		'LastIndexOfFromIndex': function () {
+			assert.strictEqual(array.lastIndexOf([45, 56, 85], 56, 1), 1);
+			assert.strictEqual(array.lastIndexOf([45, 56, 85], 85, 1), -1);
+			assert.strictEqual(array.lastIndexOf([45, 56, 85], 85, -2), -1);
+			assert.strictEqual(array.lastIndexOf([45, 56, 45], 45, 0), 0);
 		},
-		'testForEach': function () {
+		'ForEach': function () {
 			var foo = [128, "bbb", 512];
 			array.forEach(foo, function(elt, idx, array){
 				switch(idx){
-					case 0: assert.deepEqual(128, elt); break;
-					case 1: assert.deepEqual("bbb", elt); break;
-					case 2: assert.deepEqual(512, elt); break;
+					case 0: assert.strictEqual(elt, 128); break;
+					case 1: assert.strictEqual(elt, "bbb"); break;
+					case 2: assert.strictEqual(elt, 512); break;
 					default: assert.ok(false);
 				}
 			});
@@ -69,19 +69,19 @@ define([
 			}
 			assert.ok(noException);
 		},
-		'testForEach_str': function () {
+		'ForEach string': function () {
 			var bar = 'abc';
 			array.forEach(bar, function(elt, idx, array){
 				switch(idx){
-					case 0: assert.deepEqual("a", elt); break;
-					case 1: assert.deepEqual("b", elt); break;
-					case 2: assert.deepEqual("c", elt); break;
+					case 0: assert.strictEqual(elt, "a"); break;
+					case 1: assert.strictEqual(elt, "b"); break;
+					case 2: assert.strictEqual(elt, "c"); break;
 					default: assert.ok(false);
 				}
 			});
 		},
 		// FIXME: test forEach w/ a NodeList()?
-		'testForEach_string_callback': function () {
+		'ForEach string callback': function () {
 			// Test using strings as callback", which accept the parameters with
 			// the names "item", "index" and "array"!
 			var foo = [128, "bbb", 512];
@@ -90,19 +90,19 @@ define([
 				_res: ""
 			};
 			array.forEach(foo, "this._res += item", obj);
-			assert.deepEqual(obj._res, "128bbb512");
+			assert.strictEqual("128bbb512", obj._res);
 			// Test that the variable "index" contains each index.
 			obj._res = [];
 			array.forEach(foo, "this._res.push(index)", obj);
-			assert.deepEqual(obj._res, [0,1,2]);
+			assert.deepEqual([0,1,2], obj._res);
 			// Test that the variable "array" always contains the entire array.
 			obj._res = [];
 			array.forEach(foo, "this._res.push(array)", obj);
-			assert.deepEqual(obj._res, [
+			assert.deepEqual([
 				[128, "bbb", 512],
 				[128, "bbb", 512],
 				[128, "bbb", 512]
-			]);
+			], obj._res);
 			// Catch undefined variable usage (I used to use "i" :-)).
 			var caughtException = false;
 			try{
@@ -113,15 +113,15 @@ define([
 			assert.ok(caughtException);
 		},
 		// FIXME: test forEach w/ a NodeList()?
-		'testEvery': function () {
+		'Every': function () {
 			var foo = [128, "bbb", 512];
 
 			assert.ok(
 				array.every(foo, function(elt, idx, array){
-					assert.deepEqual(Array, array.constructor);
+					assert.strictEqual(array.constructor, Array);
 					assert.ok(lang.isArray(array));
 					assert.ok(typeof idx == "number");
-					if(idx == 1){ assert.deepEqual("bbb" , elt); }
+					if(idx == 1){ assert.strictEqual(elt, "bbb"); }
 					return true;
 				})
 			);
@@ -129,9 +129,9 @@ define([
 			assert.ok(
 				array.every(foo, function(elt, idx, array){
 					switch(idx){
-						case 0: assert.deepEqual(128, elt); return true;
-						case 1: assert.deepEqual("bbb", elt); return true;
-						case 2: assert.deepEqual(512, elt); return true;
+						case 0: assert.strictEqual(elt, 128); return true;
+						case 1: assert.strictEqual(elt, "bbb"); return true;
+						case 2: assert.strictEqual(elt, 512); return true;
 						default: return false;
 					}
 				})
@@ -140,23 +140,23 @@ define([
 			assert.notEqual( // intern chai has no assert.notOk
 				array.every(foo, function(elt, idx, array){
 					switch(idx){
-						case 0: assert.deepEqual(128, elt); return true;
-						case 1: assert.deepEqual("bbb", elt); return true;
-						case 2: assert.deepEqual(512, elt); return false;
+						case 0: assert.strictEqual(elt, 128); return true;
+						case 1: assert.strictEqual(elt, "bbb"); return true;
+						case 2: assert.strictEqual(elt, 512); return false;
 						default: return true;
 					}
 				})
 			);
 
 		},
-		'testEvery_str': function () {
+		'Every string': function () {
 			var bar = 'abc';
 			assert.ok(
 				array.every(bar, function(elt, idx, array){
 					switch(idx){
-						case 0: assert.deepEqual("a", elt); return true;
-						case 1: assert.deepEqual("b", elt); return true;
-						case 2: assert.deepEqual("c", elt); return true;
+						case 0: assert.strictEqual(elt, "a"); return true;
+						case 1: assert.strictEqual(elt, "b"); return true;
+						case 2: assert.strictEqual(elt, "c"); return true;
 						default: return false;
 					}
 				})
@@ -165,20 +165,20 @@ define([
 			assert.notEqual( // intern chai has no assert.notOk
 				array.every(bar, function(elt, idx, array){
 					switch(idx){
-						case 0: assert.deepEqual("a", elt); return true;
-						case 1: assert.deepEqual("b", elt); return true;
-						case 2: assert.deepEqual("c", elt); return false;
+						case 0: assert.strictEqual(elt, "a"); return true;
+						case 1: assert.strictEqual(elt, "b"); return true;
+						case 2: assert.strictEqual(elt, "c"); return false;
 						default: return true;
 					}
 				})
 			);
 		},
 		// FIXME: test NodeList for every()?
-		'testSome': function () {
+		'Some': function () {
 			var foo = [128, "bbb", 512];
 			assert.ok(
 				array.some(foo, function(elt, idx, array){
-					assert.deepEqual(3, array.length);
+					assert.strictEqual(array.length, 3);
 					return true;
 				})
 			);
@@ -198,23 +198,23 @@ define([
 
 			assert.ok(
 				array.some(foo, function(elt, idx, array){
-					assert.deepEqual(Array, array.constructor);
+					assert.strictEqual(array.constructor, Array);
 					assert.ok(lang.isArray(array));
 					assert.ok(typeof idx == "number");
-					if(idx == 1){ assert.deepEqual("bbb" , elt); }
+					if(idx == 1){ assert.strictEqual(elt, "bbb"); }
 					return true;
 				})
 			);
 		},
-		'testSome_str': function () {
+		'Some string': function () {
 			var bar = 'abc';
 			assert.ok(
 				array.some(bar, function(elt, idx, array){
-					assert.deepEqual(3, array.length);
+					assert.strictEqual(3, array.length);
 					switch(idx){
-						case 0: assert.deepEqual("a", elt); return true;
-						case 1: assert.deepEqual("b", elt); return true;
-						case 2: assert.deepEqual("c", elt); return true;
+						case 0: assert.strictEqual(elt, "a"); return true;
+						case 1: assert.strictEqual(elt, "b"); return true;
+						case 2: assert.strictEqual(elt, "c"); return true;
 						default: return false;
 					}
 				})
@@ -223,9 +223,9 @@ define([
 			assert.ok(
 				array.some(bar, function(elt, idx, array){
 					switch(idx){
-						case 0: assert.deepEqual("a", elt); return true;
-						case 1: assert.deepEqual("b", elt); return true;
-						case 2: assert.deepEqual("c", elt); return false;
+						case 0: assert.strictEqual(elt, "a"); return true;
+						case 1: assert.strictEqual(elt, "b"); return true;
+						case 2: assert.strictEqual(elt, "c"); return false;
 						default: return true;
 					}
 				})
@@ -238,56 +238,58 @@ define([
 			);
 		},
 		// FIXME: need to add scoping tests for all of these!!!
-		'testFilter': function () {
+		'Filter': function () {
 			var foo = ["foo", "bar", 10];
 
 			assert.deepEqual(["foo"],
 				array.filter(foo, function(elt, idx, array){
 					return idx < 1;
-				})
+				}),
+				'idx < 1'
 			);
 
-			assert.deepEqual(["foo"],
-				array.filter(foo, function(elt, idx, array){
+			assert.deepEqual(array.filter(foo, function(elt, idx, array){
 					return elt == "foo";
-				})
+				}),
+				["foo"],
+				'elt == "foo"'
 			);
 
-			assert.deepEqual([],
-				array.filter(foo, function(elt, idx, array){
+			assert.deepEqual(array.filter(foo, function(elt, idx, array){
 					return false;
-				})
+				}),
+				[]
 			);
 
-			assert.deepEqual([10],
-				array.filter(foo, function(elt, idx, array){
+			assert.deepEqual(array.filter(foo, function(elt, idx, array){
 					return typeof elt == "number";
-				})
+				}),
+				[10]
 			);
 		},
-		'testFilter_str': function () {
+		'Filter string': function () {
 			var foo = "thinger blah blah blah";
-			assert.deepEqual(["t", "h", "i"],
-				array.filter(foo, function(elt, idx, array){
+			assert.deepEqual(array.filter(foo, function(elt, idx, array){
 					return idx < 3;
-				})
+				}),
+				["t", "h", "i"]
 			);
 
-			assert.deepEqual([],
-				array.filter(foo, function(elt, idx, array){
+			assert.deepEqual(array.filter(foo, function(elt, idx, array){
 					return false;
-				})
+				}),
+				[]
 			);
 		},
-		'testMap': function () {
+		'Map': function () {
 			assert.deepEqual([],
-				array.map([], function(){ return true; })
+				array.map(function(){ return true; }, [])
 			);
 
-			assert.deepEqual([1, 2, 3],
-				array.map(["cat", "dog", "mouse"], function(elt, idx, array){
+			assert.deepEqual(array.map(["cat", "dog", "mouse"], function(elt, idx, array){
 					return idx+1;
-				})
+				}),
+				[1, 2, 3]
 			);
 		}
 

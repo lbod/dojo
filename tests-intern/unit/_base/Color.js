@@ -9,48 +9,48 @@ define([
 	var maroon = Color.fromString("maroon").toRgba();
 	var verifyColor = function(source, expected){
 		var color = new Color(source);
-		assert.deepEqual(expected, color.toRgba());
+		assert.deepEqual(color.toRgba(), expected);
 		array.forEach(color.toRgba(), function(n){
-			assert.deepEqual("number", typeof(n));
+			assert.typeOf(n, "number")
 		});
 	};
 	registerSuite({
 		name: 'dojo/_base/Color',
 
-		'testColor1': function () {
+		'maroon string': function () {
 			verifyColor("maroon", maroon);
 		},
-		'testColor2': function () {
+		'white string': function () {
 			verifyColor("white", white);
 		},
-		'testColor3': function () {
+		'white hex short': function () {
 			verifyColor("#fff", white);
 		},
-		'testColor4': function () {
+		'white hex': function () {
 			verifyColor("#ffffff", white);
 		},
-		'testColor5': function () {
+		'white rgb': function () {
 			verifyColor("rgb(255,255,255)", white);
 		},
-		'testColor6': function () {
+		'maroon hex': function () {
 			verifyColor("#800000", maroon);
 		},
-		'testColor7': function () {
+		'maroon rgb': function () {
 			verifyColor("rgb(128, 0, 0)", maroon);
 		},
-		'testColor8': function () {
+		'aliceblue rgba': function () {
 			verifyColor("rgba(128, 0, 0, 0.5)", [128, 0, 0, 0.5]);
 		},
-		'testColor9': function () {
+		'maroon rgba == rgba': function () {
 			verifyColor(maroon, maroon);
 		},
-		'testColor10': function () {
+		'rgb alpha': function () {
 			verifyColor([1, 2, 3], [1, 2, 3, 1]);
 		},
-		'testColor11': function () {
+		'array': function () {
 			verifyColor([1, 2, 3, 0.5], [1, 2, 3, 0.5]);
 		},
-		'testColor12': function () {
+		'blend black and white': function () {
 			verifyColor(Color.blendColors(new Color("black"), new Color("white"), 0.5), [128, 128, 128, 1]);
 		}
 
