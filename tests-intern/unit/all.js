@@ -5,6 +5,5 @@ define([
 	'./request',
 	'./dom-form',
 	'./io/iframe',
-	'./request',
-	'./_base'
+	'./request'
 ], function(){});
