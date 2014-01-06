@@ -1,9 +1,9 @@
 define([
 	'intern!object',
 	'intern/chai!assert',
-	"dojo/_base/array",
+	"intern/dojo/_base/array",
 	"dojo/_base/Color",
-	'dojo/has!host-browser?dojo/domReady!:'
+	'intern/dojo/has!host-browser?intern/dojo/domReady!:'
 ], function (registerSuite, assert, array, Color) {
 	var white  = Color.fromString("white").toRgba();
 	var maroon = Color.fromString("maroon").toRgba();
