@@ -65,14 +65,9 @@ define([
 						default: assert.ok(false);
 					}
 				});
-
-				var noException = true;
-				try{
+				assert.doesNotThrow(function() {
 					array.forEach(undefined, function(){});
-				}catch(e){
-					noException = false;
-				}
-				assert.ok(noException);
+				}, /.*/, 'forEach on undefined');
 			},
 			'string': function () {
 				var bar = 'abc';
@@ -109,13 +104,9 @@ define([
 					[128, "bbb", 512]
 				], obj._res);
 				// Catch undefined variable usage (I used to use "i" :-)).
-				var caughtException = false;
-				try{
+				assert.throws(function() {
 					array.forEach(foo, "this._res += arr[i];", obj);
-				}catch(e){
-					caughtException = true;
-				}
-				assert.ok(caughtException);
+				}, /.*/, 'forEach on undefined variable');
 			}
 		},
 		'.every': {
