@@ -3,8 +3,9 @@ define([
 	'intern/chai!assert',
 	"intern/dojo/_base/array",
 	"dojo/_base/lang",
+	"intern/dojo/has",
 	'intern/dojo/has!host-browser?intern/dojo/domReady!:'
-], function (registerSuite, assert, array, lang) {
+], function (registerSuite, assert, array, lang, has) {
 
 	registerSuite({
 		name: 'dojo/_base/lang',
@@ -38,9 +39,10 @@ define([
 		'.isFunction': function () {
 			assert.ok(lang.isFunction(new Function()));
 			assert.ok(lang.isFunction(this.test));
-			if(lang.isBrowser){ // test the Safari workaround for NodeList
-				assert.ok(!lang.isFunction(lang.doc.getElementsByName("html")));
-				assert.ok(!lang.isFunction(lang.doc.createElement("object")));
+
+			if (has('host-browser')) { // test the Safari workaround for NodeList
+				assert.ok(!lang.isFunction(document.getElementsByName("html")));
+				assert.ok(!lang.isFunction(document.createElement("object")));
 			}
 		},
 		'.isObject': function () {
@@ -86,7 +88,6 @@ define([
 				assert.isUndefined(st1()[0]);
 				var st2 = lang.partial(thinger, "foo", "bar");
 				assert.strictEqual(st2()[2], "bar");
-				var st3 = lang.partial(thinger, "foo", "bar");
 
 			},
 			'nested partial': function () {
@@ -150,7 +151,6 @@ define([
 				assert.isUndefined(st1()[0]);
 				var st2 = lang.hitch(null, thinger, "foo", "bar");
 				assert.strictEqual(st2()[2], "bar");
-				var st3 = lang.hitch(null, thinger, "foo", "bar");
 			}
 		},
 		'._toArray': function () {
@@ -162,7 +162,7 @@ define([
 			var obj2 = thinger.apply(this, obj1);
 			assert.deepEqual(obj2[0], obj1[0]);
 
-			if(lang.isBrowser){
+			if (has('host-browser')) {
 				//test DomCollection
 				var div = document.createElement('div');
 				div.innerHTML="<a href='#'>link</a>text";
@@ -181,24 +181,24 @@ define([
 					c: {
 						d: undefined,
 						e: 99,
-						f: function(){ console.log(42); return 42; },
+						f: function(){ return 42; },
 						g: /\d+/gm
 					}
 				},
 				toString: function(){ return "meow"; }
 			};
 			var obj2 = lang.clone(obj1);
-			assert.deepEqual(obj2.foo, obj1.foo);
-			assert.deepEqual(obj2.answer, obj1.answer);
+			assert.strictEqual(obj2.foo, obj1.foo);
+			assert.strictEqual(obj2.answer, obj1.answer);
 			assert.deepEqual(obj2.jan102007, obj1.jan102007);
-			assert.deepEqual(obj2.baz.a, obj1.baz.a);
+			assert.strictEqual(obj2.baz.a, obj1.baz.a);
 			for(var i = 0; i < obj1.baz.b.length; ++i){
-				assert.deepEqual(obj2.baz.b[i], obj1.baz.b[i]);
+				assert.strictEqual(obj2.baz.b[i], obj1.baz.b[i]);
 			}
-			assert.deepEqual(obj2.baz.c.d, obj1.baz.c.d);
-			assert.deepEqual(obj2.baz.c.e, obj1.baz.c.e);
-			assert.deepEqual(obj2.baz.c.f, obj1.baz.c.f);
-			assert.deepEqual(obj2.baz.c.f(), obj1.baz.c.f());
+			assert.strictEqual(obj2.baz.c.d, obj1.baz.c.d);
+			assert.strictEqual(obj2.baz.c.e, obj1.baz.c.e);
+			assert.strictEqual(obj2.baz.c.f, obj1.baz.c.f);
+			assert.strictEqual(obj2.baz.c.f(), obj1.baz.c.f());
 			assert.deepEqual(obj2.baz.c.g, obj1.baz.c.g);
 			assert.strictEqual(obj2.toString, obj1.toString);
 			assert.strictEqual(obj2.toString(), obj1.toString());
