@@ -188,20 +188,7 @@ define([
 				toString: function(){ return "meow"; }
 			};
 			var obj2 = lang.clone(obj1);
-			assert.strictEqual(obj2.foo, obj1.foo);
-			assert.strictEqual(obj2.answer, obj1.answer);
-			assert.deepEqual(obj2.jan102007, obj1.jan102007);
-			assert.strictEqual(obj2.baz.a, obj1.baz.a);
-			for(var i = 0; i < obj1.baz.b.length; ++i){
-				assert.strictEqual(obj2.baz.b[i], obj1.baz.b[i]);
-			}
-			assert.strictEqual(obj2.baz.c.d, obj1.baz.c.d);
-			assert.strictEqual(obj2.baz.c.e, obj1.baz.c.e);
-			assert.strictEqual(obj2.baz.c.f, obj1.baz.c.f);
-			assert.strictEqual(obj2.baz.c.f(), obj1.baz.c.f());
-			assert.deepEqual(obj2.baz.c.g, obj1.baz.c.g);
-			assert.strictEqual(obj2.toString, obj1.toString);
-			assert.strictEqual(obj2.toString(), obj1.toString());
+			assert.deepEqual(obj2, obj1);
 		},
 		'.delegate': function () {
 			var a = {
