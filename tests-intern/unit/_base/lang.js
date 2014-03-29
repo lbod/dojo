@@ -37,43 +37,43 @@ define([
 			assert.isString(test["bar"]);
 		},
 		'.isFunction': function () {
-			assert.ok(lang.isFunction(new Function()));
-			assert.ok(lang.isFunction(this.test));
+			assert.isTrue(lang.isFunction(new Function()));
+			assert.isTrue(lang.isFunction(this.test));
 
 			if (has('host-browser')) { // test the Safari workaround for NodeList
-				assert.ok(!lang.isFunction(document.getElementsByName("html")));
-				assert.ok(!lang.isFunction(document.createElement("object")));
+				assert.isFalse(lang.isFunction(document.getElementsByName("html")));
+				assert.isFalse(lang.isFunction(document.createElement("object")));
 			}
 		},
 		'.isObject': function () {
-			assert.ok(!lang.isObject(true));
-			assert.ok(!lang.isObject(false));
-			assert.ok(!lang.isObject("foo"));
-			assert.ok(lang.isObject(new String("foo")));
-			assert.ok(lang.isObject(null));
-			assert.ok(lang.isObject({}));
-			assert.ok(lang.isObject([]));
-			assert.ok(lang.isObject(new Array()));
+			assert.isFalse(lang.isObject(true));
+			assert.isFalse(lang.isObject(false));
+			assert.isFalse(lang.isObject("foo"));
+			assert.isTrue(lang.isObject(new String("foo")));
+			assert.isTrue(lang.isObject(null));
+			assert.isTrue(lang.isObject({}));
+			assert.isTrue(lang.isObject([]));
+			assert.isTrue(lang.isObject(new Array()));
 		},
 		'.isArray': function () {
-			assert.ok(lang.isArray([]));
-			assert.ok(lang.isArray(new Array()));
-			assert.ok(!lang.isArray({}));
+			assert.isTrue(lang.isArray([]));
+			assert.isTrue(lang.isArray(new Array()));
+			assert.isFalse(lang.isArray({}));
 		},
 		'.isArrayLike': function () {
-			assert.ok(!lang.isArrayLike("thinger"));
-			assert.ok(lang.isArrayLike(new Array()));
-			assert.ok(!lang.isArrayLike({}));
-			assert.ok(lang.isArrayLike(arguments));
+			assert.isFalse(lang.isArrayLike("thinger"));
+			assert.isTrue(lang.isArrayLike(new Array()));
+			assert.isFalse(lang.isArrayLike({}));
+			assert.isTrue(lang.isArrayLike(arguments));
 		},
 		'.isString': function () {
-			assert.ok(!lang.isString(true));
-			assert.ok(!lang.isString(false));
-			assert.ok(lang.isString("foo"));
-			assert.ok(lang.isString(new String("foo")));
-			assert.ok(!lang.isString(null));
-			assert.ok(!lang.isString({}));
-			assert.ok(!lang.isString([]));
+			assert.isFalse(lang.isString(true));
+			assert.isFalse(lang.isString(false));
+			assert.isTrue(lang.isString("foo"));
+			assert.isTrue(lang.isString(new String("foo")));
+			assert.isFalse(lang.isString(null));
+			assert.isFalse(lang.isString({}));
+			assert.isFalse(lang.isString([]));
 		},
 		'.partial' : {
 			'partial': function () {
